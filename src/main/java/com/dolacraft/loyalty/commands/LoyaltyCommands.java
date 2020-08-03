@@ -1,5 +1,6 @@
 package com.dolacraft.loyalty.commands;
 
+import com.dolacraft.loyalty.Loyalty;
 import com.dolacraft.loyalty.commands.main.SubcommandType;
 import com.dolacraft.loyalty.datatypes.player.LoyaltyPlayer;
 import com.dolacraft.loyalty.managers.PayoutManager;
@@ -145,7 +146,7 @@ public class LoyaltyCommands implements TabExecutor {
                     return true;
                 }
 
-                player.sendMessage(commandPrefix + "v1.0.1");
+                player.sendMessage(commandPrefix + "v" + Loyalty.properties.getProperty("version"));
 
                 return true;
             case NEXT:

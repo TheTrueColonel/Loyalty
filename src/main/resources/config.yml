@@ -17,7 +17,7 @@ MySQL:
     Database:
         Username: UserName
         Password: Password
-        DB_Name: BD_Name
+        DB_Name: DB_Name
         # This settings is the max simultaneous mysql connections allowed at a time, needs to be
         # high enough to support multiple player logins in quick succession
         MaxConnections:

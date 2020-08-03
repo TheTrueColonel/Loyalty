@@ -4,7 +4,7 @@
   <groupId>com.dolacraft</groupId>
   <artifactId>loyalty</artifactId>
   <name>Loyalty</name>
-  <version>1.0.1</version>
+  <version>1.2.0</version>
   <build>
     <resources>
       <resource>

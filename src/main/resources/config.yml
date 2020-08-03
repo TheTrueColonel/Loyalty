@@ -1,0 +1,36 @@
+#
+#  Loyalty configuration
+#  Last updated on v${project.version}
+#
+#####
+
+General:
+    # Time in minutes between saving user data
+    Save_Interval: 10
+    # Should the plugin overwrite configs to update, or make new ones ending in .new?
+    Config_Update_Overwrite: true
+    # Time in seconds between payouts (default: 600 sec (10 min))
+    Payout_Delay: 600
+
+# MySQL settings
+MySQL:
+    Database:
+        Username: UserName
+        Password: Password
+        DB_Name: BD_Name
+        # This settings is the max simultaneous mysql connections allowed at a time, needs to be
+        # high enough to support multiple player logins in quick succession
+        MaxConnections:
+            Misc: 30
+            Load: 30
+            Save: 30
+        # This setting is the max size of the pool of cached connections that we hold available
+        # at any given time
+        MaxPoolSize:
+            Misc: 10
+            Load: 20
+            Save: 20
+    Server:
+        Port: 3306
+        IP: localhost
+        SSL: false

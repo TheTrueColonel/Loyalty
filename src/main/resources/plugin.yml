@@ -1,0 +1,8 @@
+name: Loyalty
+version: ${project.version}
+main: com.dolacraft.loyalty.Loyalty
+api-version: '1.16'
+commands:
+    loyalty:
+        usage: /loyalty
+        aliases: [lt]

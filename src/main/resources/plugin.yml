@@ -2,6 +2,9 @@ name: Loyalty
 version: ${project.version}
 main: com.dolacraft.loyalty.Loyalty
 api-version: '1.16'
+
+depend: [PlaceholderAPI]
+
 commands:
     loyalty:
         usage: /loyalty

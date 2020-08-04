@@ -34,3 +34,7 @@ MySQL:
         Port: 3306
         IP: localhost
         SSL: false
+
+# Shop settings
+Shop:
+    Test: "%player_name% test"

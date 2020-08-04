@@ -162,7 +162,7 @@ public class LoyaltyCommands implements TabExecutor {
                 if (payoutTime > 0) {
                     player.sendMessage(commandPrefix + "Payment time: " + payoutMinutes + "m " + payoutSeconds + "s");
                 } else {
-                    player.sendMessage(commandPrefix + "Payment time: Now.");
+                    player.sendMessage(commandPrefix + "Payment time: Now");
                 }
 
                 return true;
@@ -184,6 +184,15 @@ public class LoyaltyCommands implements TabExecutor {
                 }
 
                 player.sendMessage(commandPrefix + "You have been online for: " + hours + "h " + minutes + "m " + seconds + "s");
+                return true;
+            case STORE:
+                if (!Permissions.userPerms(sender)) {
+                    player.sendMessage(CommandRegistrationManager.permissionsMessage);
+                    return true;
+                }
+
+
+
                 return true;
             case SET:
                 if (!Permissions.adminPerms(sender)) {

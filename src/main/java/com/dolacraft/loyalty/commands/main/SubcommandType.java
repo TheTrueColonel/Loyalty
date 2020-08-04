@@ -7,6 +7,7 @@ public enum SubcommandType {
     VERSION,
     NEXT,
     PLAYTIME,
+    STORE,
     SET,
     ADD,
     REMOVE;

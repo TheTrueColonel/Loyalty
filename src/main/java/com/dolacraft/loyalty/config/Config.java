@@ -59,7 +59,7 @@ public class Config extends AutoUpdateConfigLoader {
     public int getMySQLMaxPoolSize (SQLDatabaseManager.PoolIdentifier identifier) { return config.getInt("MySQL.Database.MaxPoolSize." + StringUtils.getCapitalized(identifier.toString()), 10); }
     public boolean getMySQLSSL () { return config.getBoolean("MySQL.Server.SSL", false); }
 
-    public String getShopTest () { return config.getString("Shop.Test"); }
+    public String getStoreTest () { return config.getString("Store.Test"); }
 
     private String getStringIncludeInts (String key) {
         String str = config.getString(key);

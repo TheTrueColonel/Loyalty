@@ -4,6 +4,7 @@ import com.dolacraft.loyalty.Loyalty;
 import com.dolacraft.loyalty.commands.LoyaltyCommands;
 import org.bukkit.ChatColor;
 import org.bukkit.command.PluginCommand;
+import org.bukkit.inventory.Inventory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ public class CommandRegistrationManager {
 
     public static final String permissionsMessage = ChatColor.GOLD + "[Loyalty]" + ChatColor.DARK_AQUA + " Insufficient permissions";
 
-    private static void registerLoyaltyCommand() {
+    private static void registerLoyaltyCommand(Inventory inventory) {
         List<String> aliases = new ArrayList<>();
         aliases.add("lt");
 
@@ -23,10 +24,10 @@ public class CommandRegistrationManager {
         command.setDescription("Basic Loyalty command.");
         command.setPermission("loyalty.user;loyalty.mod;loyalty.admin");
         command.setPermissionMessage(permissionsMessage);
-        command.setExecutor(new LoyaltyCommands());
+        command.setExecutor(new LoyaltyCommands(inventory));
     }
 
-    public static void registerCommands () {
-        registerLoyaltyCommand();
+    public static void registerCommands (Inventory inventory) {
+        registerLoyaltyCommand(inventory);
     }
 }

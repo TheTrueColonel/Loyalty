@@ -9,25 +9,34 @@ import com.dolacraft.loyalty.runnables.SaveTimerTask;
 import com.dolacraft.loyalty.util.UserManager;
 import com.dolacraft.loyalty.util.commands.CommandRegistrationManager;
 import com.google.common.base.Charsets;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public final class Loyalty extends JavaPlugin {
-
     private static DatabaseManager databaseManager;
     private static LoyaltyPayoutTask payoutTask;
 
-    public static final Properties properties = new Properties();
     public final static String playerDataKey = "loyalty: Player Date";
+
+    public static final Properties properties = new Properties();
 
     public static FixedMetadataValue metadataValue;
     public static Loyalty plugin;
 
+    public Inventory storeInventory;
     public boolean noErrorsInConfigFiles = true;
 
     @Override
@@ -47,10 +56,12 @@ public final class Loyalty extends JavaPlugin {
 
             properties.load(this.getClassLoader().getResourceAsStream(".properties"));
 
-            registerEvents();
+            createStoreInventory();
 
+            registerEvents();
             scheduleTasks();
-            CommandRegistrationManager.registerCommands();
+
+            CommandRegistrationManager.registerCommands(storeInventory);
         } catch (Throwable t) {
             getLogger().severe("There was an error while enabling Loyalty!");
 
@@ -80,7 +91,7 @@ public final class Loyalty extends JavaPlugin {
     private void registerEvents () {
         PluginManager pluginManager = getServer().getPluginManager();
 
-        pluginManager.registerEvents(new PlayerListener(), this);
+        pluginManager.registerEvents(new PlayerListener(storeInventory), this);
     }
 
     private void scheduleTasks () {
@@ -90,6 +101,21 @@ public final class Loyalty extends JavaPlugin {
 
         // Starts the task to payout LP
         payoutTask.startPayoutTask();
+    }
+
+    private void createStoreInventory () {
+        storeInventory = Bukkit.createInventory(null, 27, "Loyalty Store");
+
+        ItemStack item = new ItemStack(Material.PAPER);
+        ItemMeta meta = item.getItemMeta();
+
+        List<String> lore = new ArrayList<>();
+
+        meta.setDisplayName(ChatColor.AQUA + "Store test: Buy");
+        lore.add(ChatColor.GRAY + "Click to test the buy function!");
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+        storeInventory.setItem(13, item);
     }
 
     public void debug (String message) {

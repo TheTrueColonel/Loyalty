@@ -15,6 +15,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.util.StringUtil;
 
 import java.util.*;
@@ -25,7 +26,12 @@ import java.util.stream.Collectors;
 public class LoyaltyCommands implements TabExecutor {
     private static final List<String> LOYALTY_SUBCOMMANDS;
 
+    private final Inventory inventory;
     private final String commandPrefix = ChatColor.GOLD + "[Loyalty] " + ChatColor.DARK_AQUA;
+
+    public LoyaltyCommands (Inventory inventory) {
+        this.inventory = inventory;
+    }
 
     static {
         ArrayList<String> subcommands = new ArrayList<>();
@@ -191,7 +197,7 @@ public class LoyaltyCommands implements TabExecutor {
                     return true;
                 }
 
-
+                player.openInventory(inventory);
 
                 return true;
             case SET:
@@ -274,6 +280,10 @@ public class LoyaltyCommands implements TabExecutor {
                         if (Integer.parseInt(args[2]) <= 0) {
                             player.sendMessage(commandPrefix + ChatColor.RED + "Amount must be greater than 0");
                             return true;
+                        }
+
+                        if ((selectedPlayer.getProfile().getPoints() - Integer.parseInt(args[2])) < 0) {
+                            player.sendMessage(commandPrefix + ChatColor.RED + "Player total after point removal must not be less than 0!");
                         }
 
                         selectedPlayer.getProfile().removePoints(Integer.parseInt(args[2]));

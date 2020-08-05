@@ -13,10 +13,17 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.inventory.Inventory;
 
 public class PlayerListener implements Listener {
+    private final Inventory inventory;
+
+    public PlayerListener (Inventory inventory) {
+        this.inventory = inventory;
+    }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onPlayerQuit (PlayerQuitEvent event) {
@@ -47,5 +54,16 @@ public class PlayerListener implements Listener {
         new PlayerProfileLoadingTask(player).runTaskLaterAsynchronously(Loyalty.plugin, 1);
 
         PayoutManager.getInstance().addPlayerPayout(player.getUniqueId());
+    }
+
+    /**
+     * Manages store interactions
+     * @param event The event to monitor
+     */
+    @EventHandler
+    public void onInventoryClick (InventoryClickEvent event) {
+        if (!event.getInventory().equals(inventory)) return;
+
+        event.setCancelled(true);
     }
 }

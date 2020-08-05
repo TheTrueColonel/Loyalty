@@ -35,6 +35,6 @@ MySQL:
         IP: localhost
         SSL: false
 
-# Shop settings
-Shop:
+# Store settings
+Store:
     Test: "%player_name% test"

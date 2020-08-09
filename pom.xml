@@ -65,6 +65,7 @@
                             <include>org.apache.tomcat:tomcat-juli</include>
                         </includes>
                     </artifactSet>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
                     <relocations>
                         <relocation>
                             <pattern>org.apache.commons.logging</pattern>

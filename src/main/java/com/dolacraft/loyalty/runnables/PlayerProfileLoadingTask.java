@@ -1,8 +1,8 @@
 package com.dolacraft.loyalty.runnables;
 
 import com.dolacraft.loyalty.Loyalty;
-import com.dolacraft.loyalty.datatypes.player.PlayerProfile;
 import com.dolacraft.loyalty.datatypes.player.LoyaltyPlayer;
+import com.dolacraft.loyalty.datatypes.player.PlayerProfile;
 import com.dolacraft.loyalty.util.UserManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;

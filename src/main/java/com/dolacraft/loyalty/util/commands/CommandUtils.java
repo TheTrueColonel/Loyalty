@@ -9,8 +9,6 @@ import java.util.List;
 
 public final class CommandUtils {
 
-    public CommandUtils () {}
-
     public static boolean noConsoleUsage (CommandSender sender) {
         if (sender instanceof Player) {
             return false;

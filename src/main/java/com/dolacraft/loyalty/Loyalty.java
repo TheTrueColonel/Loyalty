@@ -37,7 +37,7 @@ public final class Loyalty extends JavaPlugin {
             loadConfigFile();
 
             if (!noErrorsInConfigFiles) {
-                return;
+                throw new Exception("There was an error in the config files!");
             }
 
             databaseManager = DatabaseManagerFactory.getDatabaseManager();
@@ -81,7 +81,7 @@ public final class Loyalty extends JavaPlugin {
 
     private void scheduleTasks () {
         // Periodic save timer (Saves every 10 minutes by default)
-        long saveIntervalTicks = Config.getInstance().getSaveInterval() * 1200;
+        long saveIntervalTicks = Config.getInstance().getSaveInterval() * 1200L;
         new SaveTimerTask().runTaskTimer(this, saveIntervalTicks, saveIntervalTicks);
 
         // Starts the task to payout LP
